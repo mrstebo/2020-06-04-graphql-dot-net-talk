@@ -1,5 +1,7 @@
+using System.Linq;
 using HotChocolate.Types;
 using MyApi.Data.Entities;
+using MyApi.Data.Repositories;
 using MyApi.Resolvers;
 
 namespace MyApi.Types
@@ -17,6 +19,18 @@ namespace MyApi.Types
                 .Type<StringType>();
             descriptor.Field(t => t.Description)
                 .Type<StringType>();
+
+            descriptor.Ignore(t => t.AuthorId);
+
+            descriptor.Field(t => t.Reviews)
+                .Type<NonNullType<ListType<BookReviewType>>>()
+                .Resolver(ctx =>
+                {
+                    var repository = ctx.Service<IBookReviewRepository>();
+                    var book = ctx.Parent<Book>();
+
+                    return repository.FindAll().Where(x => x.BookId == book.Id);
+                });
 
             descriptor.Include<BookResolvers>();
         }
