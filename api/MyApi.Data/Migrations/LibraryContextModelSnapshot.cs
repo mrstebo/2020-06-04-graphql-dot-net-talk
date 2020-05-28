@@ -204,6 +204,7 @@ namespace MyApi.Data.Migrations
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<long>("BookId")
+                        .HasColumnName("book_id")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Content")

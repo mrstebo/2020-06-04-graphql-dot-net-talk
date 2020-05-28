@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MyApi.Data.Migrations
 {
     [DbContext(typeof(LibraryContext))]
-    [Migration("20200528122957_CreateBookReviews")]
+    [Migration("20200528123158_CreateBookReviews")]
     partial class CreateBookReviews
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -206,6 +206,7 @@ namespace MyApi.Data.Migrations
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<long>("BookId")
+                        .HasColumnName("book_id")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Content")

@@ -14,6 +14,7 @@ namespace MyApi.Data.TypeConfigurations
 
             builder.Property(m => m.Id)
                 .HasColumnName("id");
+
             builder.Property(m => m.Name)
                 .HasColumnName("name")
                 .IsRequired();
@@ -25,6 +26,9 @@ namespace MyApi.Data.TypeConfigurations
                 .IsRequired();
             builder.Property(m => m.CreatedAt)
                 .HasColumnName("created_at")
+                .IsRequired();
+            builder.Property(m => m.BookId)
+                .HasColumnName("book_id")
                 .IsRequired();
 
             builder.HasOne(m => m.Book)

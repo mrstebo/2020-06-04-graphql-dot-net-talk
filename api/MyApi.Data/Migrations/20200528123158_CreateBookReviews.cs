@@ -18,23 +18,23 @@ namespace MyApi.Data.Migrations
                     title = table.Column<string>(nullable: false),
                     content = table.Column<string>(nullable: false),
                     created_at = table.Column<DateTime>(nullable: false),
-                    BookId = table.Column<long>(nullable: false)
+                    book_id = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_book_reviews", x => x.id);
                     table.ForeignKey(
-                        name: "FK_book_reviews_books_BookId",
-                        column: x => x.BookId,
+                        name: "FK_book_reviews_books_book_id",
+                        column: x => x.book_id,
                         principalTable: "books",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_book_reviews_BookId",
+                name: "IX_book_reviews_book_id",
                 table: "book_reviews",
-                column: "BookId");
+                column: "book_id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
