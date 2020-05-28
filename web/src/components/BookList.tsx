@@ -1,15 +1,13 @@
 import React from 'react';
 import { Card, Image } from 'semantic-ui-react';
 
-export interface IBookListProps {
-  data: Array<{
-    id: number;
+export interface IBookListItem {
+  id: number;
+  name: string;
+  imageUrl: string;
+  author: {
     name: string;
-    imageUrl: string;
-    author: {
-      name: string;
-    };
-  }>;
+  };
 }
 
 export const BookList: React.FC<IBookListProps> = ({ data }) => {

@@ -2,13 +2,15 @@ import React from 'react';
 import { Image, Table } from 'semantic-ui-react';
 import styles from './AuthorList.module.scss';
 
+export interface IAuthorListItem {
+  id: number;
+  name: string;
+  imageUrl?: string;
+  bookCount: number;
+}
+
 export interface IAuthorListProps {
-  data: Array<{
-    id: number;
-    name: string;
-    imageUrl?: string;
-    bookCount: number;
-  }>;
+  data: IAuthorListItem[];
 }
 
 export const AuthorList: React.FC<IAuthorListProps> = ({ data }) => {
