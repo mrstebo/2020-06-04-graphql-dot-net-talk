@@ -6,8 +6,8 @@ import { Container, Divider, Segment } from 'semantic-ui-react';
 import {
   BookInformation,
   BookReviewForm,
-  IBookReviewFormData,
   BookReviewList,
+  IBookReviewFormData,
 } from '../components';
 import { GET_BOOK } from '../graphql/queries';
 import { BOOK_REVIEW_SUBSCRIPTION } from '../graphql/subscriptions';

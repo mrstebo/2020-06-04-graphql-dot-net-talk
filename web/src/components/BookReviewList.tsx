@@ -14,11 +14,11 @@ export interface IBookReviewListProps {
 }
 
 export const BookReviewList: React.FC<IBookReviewListProps> = ({ data }) => {
-  const renderItem = (item: IBookReviewListItem) => {
+  const renderItem = (item: IBookReviewListItem, index: number) => {
     const avatarHash = item.name.split(' ').join('');
 
     return (
-      <Feed.Event>
+      <Feed.Event key={`book_review_${index}`}>
         <Feed.Label>
           <Image
             avatar={true}

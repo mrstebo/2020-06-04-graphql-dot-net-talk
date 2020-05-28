@@ -16,11 +16,11 @@ export interface IBookListProps {
 }
 
 export const BookList: React.FC<IBookListProps> = ({ data, onBookClicked }) => {
-  const renderItem = (item: IBookListItem) => {
+  const renderItem = (item: IBookListItem, index: number) => {
     const handleItemClicked = () => onBookClicked(item);
 
     return (
-      <Card onClick={handleItemClicked}>
+      <Card key={`book_${index}`} onClick={handleItemClicked}>
         <Image src={item.imageUrl} />
         <Card.Content>
           <Card.Header>{item.name}</Card.Header>
