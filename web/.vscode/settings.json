@@ -1,0 +1,9 @@
+{
+  "editor.formatOnSave": true,
+  "editor.renderWhitespace": "all",
+  "editor.tabSize": 2,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "git.ignoreLimitWarning": true,
+  "javascript.format.enable": false
+}

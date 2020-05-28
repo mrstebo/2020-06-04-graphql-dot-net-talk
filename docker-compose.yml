@@ -1,0 +1,63 @@
+version: "3.1"
+
+services:
+  nginx:
+    build:
+      context: nginx
+    tty: true
+    ports:
+      - 80:80
+    links:
+      - web:web
+      - api:api
+
+  web:
+    build:
+      context: web
+    command: bash -c "yarn install && yarn start"
+    volumes:
+      - ./web:/usr/src/app
+    environment:
+      CI: "true"
+
+  api:
+    build:
+      context: api
+    command: ./entrypoint.sh
+    ports:
+      - 5000:5000
+      - 5001:5001
+    volumes:
+      - ./api:/app
+      - bin:/app/MyApi/bin
+      - obj:/app/MyApi/obj
+      - bin_data:/app/MyApi.Data/bin
+      - obj_data:/app/MyApi.Data/obj
+    links:
+      - db:db
+    environment:
+      DB_HOST: db
+      DB_DATABASE: mydb
+      DB_USERNAME: testuser
+      DB_PASSWORD: mysupersecurepassword
+
+  db:
+    image: postgres:12.3
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: testuser
+      POSTGRES_PASSWORD: mysupersecurepassword
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    links:
+      - db:db
+
+volumes:
+  bin:
+  obj:
+  bin_data:
+  obj_data:
