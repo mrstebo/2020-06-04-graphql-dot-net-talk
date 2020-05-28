@@ -6,7 +6,7 @@ namespace MyApi.Types
     {
         protected override void Configure(IObjectTypeDescriptor<Mutation> descriptor)
         {
-            descriptor.Field(t => t.CreateBookReview(default!, default!))
+            descriptor.Field(t => t.CreateBookReview(default!, default!, default!))
                 .Type<NonNullType<BookReviewType>>()
                 .Argument("input", arg => arg.Type<NonNullType<CreateBookReviewInputType>>());
         }

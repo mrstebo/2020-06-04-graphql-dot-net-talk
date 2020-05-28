@@ -2,6 +2,7 @@ using HotChocolate;
 using HotChocolate.AspNetCore;
 using HotChocolate.AspNetCore.Playground;
 using HotChocolate.AspNetCore.Voyager;
+using HotChocolate.Subscriptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,7 +23,7 @@ namespace MyApi
             // services.AddSingleton<Query>();
 
             // enable InMemory messaging services for subscription support.
-            // services.AddInMemorySubscriptionProvider();
+            services.AddInMemorySubscriptionProvider();
 
             // this enables you to use DataLoader in your resolvers.
             services.AddDataLoaderRegistry();
@@ -33,6 +34,7 @@ namespace MyApi
                 // .AddAuthorizeDirectiveType()
                 .AddQueryType<QueryType>()
                 .AddMutationType<MutationType>()
+                .AddSubscriptionType<SubscriptionType>()
                 .ModifyOptions(o => o.RemoveUnreachableTypes = true));
         }
 
