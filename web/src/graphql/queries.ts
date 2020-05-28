@@ -24,3 +24,16 @@ export const GET_BOOKS = gql`
     }
   }
 `;
+
+export const GET_BOOK = gql`
+  query($bookId: ID!) {
+    book(id: $bookId) {
+      name
+      imageUrl
+      description
+      author {
+        name
+      }
+    }
+  }
+`;
