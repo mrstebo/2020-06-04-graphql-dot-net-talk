@@ -9,11 +9,13 @@ namespace MyApi.Types
             descriptor.Field(t => t.GetAuthors(default!))
                 .Type<NonNullType<ListType<AuthorType>>>();
             descriptor.Field(t => t.GetAuthor(default!, default))
-                .Type<NonNullType<AuthorType>>();
+                .Type<NonNullType<AuthorType>>()
+                .Argument("id", arg => arg.Type<IdType>());
             descriptor.Field(t => t.GetBooks(default!))
                 .Type<NonNullType<ListType<BookType>>>();
             descriptor.Field(t => t.GetBook(default!, default))
-                .Type<NonNullType<BookType>>();
+                .Type<NonNullType<BookType>>()
+                .Argument("id", arg => arg.Type<IdType>());
         }
     }
 }
