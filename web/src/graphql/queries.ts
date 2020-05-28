@@ -34,6 +34,12 @@ export const GET_BOOK = gql`
       author {
         name
       }
+      reviews {
+        name
+        title
+        content
+        createdAt
+      }
     }
   }
 `;

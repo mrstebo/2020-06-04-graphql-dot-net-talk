@@ -7,6 +7,7 @@ import {
   BookInformation,
   BookReviewForm,
   IBookReviewFormData,
+  BookReviewList,
 } from '../components';
 import { GET_BOOK } from '../graphql/queries';
 
@@ -40,6 +41,8 @@ export const BookDetailsPage: React.FC = () => {
         <BookInformation {...data.book} />
         <Divider />
         <BookReviewForm onSubmit={handleBookReviewFormSubmitted} />
+        <Divider />
+        <BookReviewList data={data.book.reviews} />
       </div>
     );
   };
