@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace MyApi.Data.Entities
 {
     public class Book
@@ -9,5 +11,7 @@ namespace MyApi.Data.Entities
 
         public long AuthorId { get; set; }
         public virtual Author Author { get; set; }
+
+        public virtual ICollection<BookReview> Reviews { get; set; }
     }
 }

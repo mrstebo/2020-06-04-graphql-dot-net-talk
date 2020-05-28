@@ -26,6 +26,8 @@ namespace MyApi.Data.TypeConfigurations
             builder.HasOne(m => m.Author)
                 .WithMany(m => m.Books)
                 .HasForeignKey(m => m.AuthorId);
+            builder.HasMany(m => m.Reviews)
+                .WithOne(m => m.Book);
         }
     }
 }
