@@ -10,18 +10,29 @@ export interface IBookListItem {
   };
 }
 
-export const BookList: React.FC<IBookListProps> = ({ data }) => {
+export interface IBookListProps {
+  data: IBookListItem[];
+  onBookClicked(book: { id: number }): void;
+}
+
+export const BookList: React.FC<IBookListProps> = ({ data, onBookClicked }) => {
+  const renderItem = (item: IBookListItem) => {
+    const handleItemClicked = () => onBookClicked(item);
+
+    return (
+      <Card onClick={handleItemClicked}>
+        <Image src={item.imageUrl} />
+        <Card.Content>
+          <Card.Header>{item.name}</Card.Header>
+          <Card.Meta>{item.author.name}</Card.Meta>
+        </Card.Content>
+      </Card>
+    );
+  };
+
   return (
     <Card.Group stackable={true} itemsPerRow={4}>
-      {data.map((item, index) => (
-        <Card key={index}>
-          <Image src={item.imageUrl} />
-          <Card.Content>
-            <Card.Header>{item.name}</Card.Header>
-            <Card.Meta>{item.author.name}</Card.Meta>
-          </Card.Content>
-        </Card>
-      ))}
+      {data.map(renderItem)}
     </Card.Group>
   );
 };
