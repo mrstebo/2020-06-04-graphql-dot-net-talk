@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Feed, Image } from 'semantic-ui-react';
 
 export interface IBookReviewListItem {
@@ -11,9 +11,17 @@ export interface IBookReviewListItem {
 
 export interface IBookReviewListProps {
   data: IBookReviewListItem[];
+  subscribeToNewBookReviews(): void;
 }
 
-export const BookReviewList: React.FC<IBookReviewListProps> = ({ data }) => {
+export const BookReviewList: React.FC<IBookReviewListProps> = ({
+  data,
+  subscribeToNewBookReviews,
+}) => {
+  useEffect(() => {
+    subscribeToNewBookReviews();
+  }, []);
+
   const renderItem = (item: IBookReviewListItem, index: number) => {
     const avatarHash = item.name.split(' ').join('');
 
