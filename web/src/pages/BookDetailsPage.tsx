@@ -2,14 +2,8 @@ import { useQuery } from '@apollo/react-hooks';
 import React from 'react';
 import { Digital as ActivityIndicator } from 'react-activity';
 import { useParams } from 'react-router-dom';
-import {
-  Container,
-  Divider,
-  Grid,
-  Header,
-  Image,
-  Segment,
-} from 'semantic-ui-react';
+import { Container, Segment } from 'semantic-ui-react';
+import { BookInformation } from '../components';
 import { GET_BOOK } from '../graphql/queries';
 
 export const BookDetailsPage: React.FC = () => {
@@ -33,27 +27,7 @@ export const BookDetailsPage: React.FC = () => {
       );
     }
 
-    return (
-      <>
-        <Header size="huge">
-          {data.book.name}
-          <Header.Subheader>{data.book.author.name}</Header.Subheader>
-        </Header>
-        <Divider />
-        <Grid>
-          <Grid.Row>
-            <Grid.Column width="5">
-              <Image src={data.book.imageUrl} />
-            </Grid.Column>
-            <Grid.Column width="9">
-              <div
-                dangerouslySetInnerHTML={{ __html: data.book.description }}
-              />
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </>
-    );
+    return <BookInformation {...data.book} />;
   };
 
   return <Container>{renderContent()}</Container>;
