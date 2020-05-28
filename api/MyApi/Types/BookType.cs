@@ -15,6 +15,8 @@ namespace MyApi.Types
                 .Description("The name of the book");
             descriptor.Field(t => t.ImageUrl)
                 .Type<StringType>();
+            descriptor.Field(t => t.Description)
+                .Type<StringType>();
 
             descriptor.Include<BookResolvers>();
         }
