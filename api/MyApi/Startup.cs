@@ -32,6 +32,7 @@ namespace MyApi
                 // enable for authorization support
                 // .AddAuthorizeDirectiveType()
                 .AddQueryType<QueryType>()
+                .AddMutationType<MutationType>()
                 .ModifyOptions(o => o.RemoveUnreachableTypes = true));
         }
 
