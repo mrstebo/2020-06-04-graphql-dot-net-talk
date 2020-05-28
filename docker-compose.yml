@@ -16,7 +16,8 @@ services:
       context: web
     command: bash -c "yarn install && yarn start"
     volumes:
-      - ./web:/usr/src/app
+      - ./web:/app
+      - node_modules:/app/node_modules
     environment:
       CI: "true"
 
@@ -61,3 +62,4 @@ volumes:
   obj:
   bin_data:
   obj_data:
+  node_modules:
