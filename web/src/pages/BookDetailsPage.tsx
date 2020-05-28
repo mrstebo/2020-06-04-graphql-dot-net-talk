@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useSubscription } from '@apollo/react-hooks';
 import React from 'react';
 import { Digital as ActivityIndicator } from 'react-activity';
 import { useParams } from 'react-router-dom';
@@ -10,10 +10,20 @@ import {
   BookReviewList,
 } from '../components';
 import { GET_BOOK } from '../graphql/queries';
+import { BOOK_REVIEW_SUBSCRIPTION } from '../graphql/subscriptions';
 
 export const BookDetailsPage: React.FC = () => {
   const { bookId } = useParams();
   const { loading, error, data } = useQuery(GET_BOOK, {
+    variables: {
+      bookId,
+    },
+  });
+  const {
+    loading: subscriptionLoading,
+    error: subscriptionError,
+    data: subscriptionData,
+  } = useSubscription(BOOK_REVIEW_SUBSCRIPTION, {
     variables: {
       bookId,
     },

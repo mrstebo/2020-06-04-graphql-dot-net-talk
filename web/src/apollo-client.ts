@@ -10,7 +10,7 @@ const httpLink = new HttpLink({
 });
 
 const wsLink = new WebSocketLink({
-  uri: 'ws://localhost',
+  uri: 'ws://localhost/sockjs-node',
   options: {
     reconnect: true,
   },
