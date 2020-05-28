@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
-export const BOOK_REVIEW_SUBSCRIPTION = gql`
-  subscription onBookReviewAdded($bookId: ID!) {
+export const ON_BOOK_REVIEW_ADDED = gql`
+  subscription sub($bookId: ID!) {
     onBookReviewAdded(bookId: $bookId) {
       name
       title
