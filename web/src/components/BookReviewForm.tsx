@@ -22,12 +22,19 @@ export const BookReviewForm: React.FC<IBookReviewFormProps> = ({
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setState({ ...state, [e.target.name]: e.target.value });
+
   const handleTextAreaChange = (
     e: React.FormEvent<HTMLTextAreaElement>,
     data: FormTextAreaProps
   ) => setState({ ...state, [e.currentTarget.name]: data.value });
+
   const handleSubmit = () => {
     onSubmit(state);
+    setState({
+      name: '',
+      title: '',
+      review: '',
+    });
   };
 
   return (

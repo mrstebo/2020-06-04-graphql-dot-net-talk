@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/react-hooks';
+import { useMutation, useQuery } from '@apollo/react-hooks';
 import React from 'react';
 import { Digital as ActivityIndicator } from 'react-activity';
 import { useParams } from 'react-router-dom';
@@ -9,6 +9,7 @@ import {
   IBookReviewFormData,
 } from '../components';
 import { SubscribedBookReviewList } from '../containers';
+import { CREATE_BOOK_REVIEW } from '../graphql/mutations';
 import { GET_BOOK } from '../graphql/queries';
 
 export const BookDetailsPage: React.FC = () => {
@@ -18,9 +19,19 @@ export const BookDetailsPage: React.FC = () => {
       bookId,
     },
   });
+  const [createBookReview] = useMutation(CREATE_BOOK_REVIEW);
 
   const handleBookReviewFormSubmitted = (formData: IBookReviewFormData) => {
-    // Submit the form
+    createBookReview({
+      variables: {
+        input: {
+          bookId,
+          name: formData.name,
+          title: formData.title,
+          content: formData.review,
+        },
+      },
+    });
   };
 
   const renderContent = () => {
