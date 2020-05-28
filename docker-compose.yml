@@ -1,25 +1,19 @@
 version: "3.1"
 
 services:
-  nginx:
-    build:
-      context: nginx
-    tty: true
-    ports:
-      - 80:80
-    links:
-      - web:web
-      - api:api
-
   web:
     build:
       context: web
     command: bash -c "yarn install && yarn start"
+    ports:
+      - 3000:3000
     volumes:
       - ./web:/app
       - node_modules:/app/node_modules
     environment:
       CI: "true"
+      REACT_APP_API_URL: http://localhost:5000/graphql
+      REACT_APP_SUBSCRIPTION_URL: ws://localhost:5000/graphql
 
   api:
     build:

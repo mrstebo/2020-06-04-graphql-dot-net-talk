@@ -13,7 +13,7 @@ namespace MyApi.EventMessages
 
         private static EventDescription CreateEventDescription(long bookId)
         {
-            return new EventDescription("onBookReview",
+            return new EventDescription("onBookReviewAdded",
                 new ArgumentNode("bookId",
                     new IntValueNode(bookId)));
         }

@@ -5,12 +5,15 @@ import { HttpLink } from 'apollo-link-http';
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
 
+const API_URL = process.env.REACT_APP_API_URL;
+const SUBSCRIPTION_URL = process.env.REACT_APP_SUBSCRIPTION_URL;
+
 const httpLink = new HttpLink({
-  uri: 'http://localhost/api',
+  uri: `${API_URL}`,
 });
 
 const wsLink = new WebSocketLink({
-  uri: 'ws://localhost/sockjs-node',
+  uri: `${SUBSCRIPTION_URL}`,
   options: {
     reconnect: true,
   },

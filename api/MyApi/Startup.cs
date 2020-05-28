@@ -36,19 +36,29 @@ namespace MyApi
                 .AddMutationType<MutationType>()
                 .AddSubscriptionType<SubscriptionType>()
                 .ModifyOptions(o => o.RemoveUnreachableTypes = true));
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", builder => builder
+                    .AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                );
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app
+                .UseCors("AllowAll")
                 .UseRouting()
                 .UseWebSockets()
-                .UseGraphQL()
+                .UseGraphQL("/graphql")
                 .UsePlayground(new PlaygroundOptions
                 {
                     Path = "/playground",
-                    QueryPath = "/api//"
+                    QueryPath = "/graphql"
                 })
                 .UseVoyager();
         }
