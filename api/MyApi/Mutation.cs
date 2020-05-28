@@ -24,7 +24,7 @@ namespace MyApi
                 Content = input.Content
             });
 
-            await eventSender.SendAsync(new OnBookReviewMessage(bookReview));
+            await eventSender.SendAsync(new OnBookReviewAddedMessage(input.BookId, bookReview));
 
             return bookReview;
         }

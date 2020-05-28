@@ -6,8 +6,9 @@ namespace MyApi.Types
     {
         protected override void Configure(IObjectTypeDescriptor<Subscription> descriptor)
         {
-            descriptor.Field(t => t.OnBookReview(default!))
-                .Type<NonNullType<BookReviewType>>();
+            descriptor.Field(t => t.OnBookReviewAdded(default!, default!))
+                .Type<NonNullType<BookReviewType>>()
+                .Argument("bookId", arg => arg.Type<NonNullType<IdType>>());
         }
     }
 }

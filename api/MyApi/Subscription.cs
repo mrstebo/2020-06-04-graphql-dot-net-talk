@@ -5,7 +5,7 @@ namespace MyApi
 {
     public class Subscription
     {
-        public BookReview OnBookReview(IEventMessage message)
+        public BookReview OnBookReviewAdded(long bookId, IEventMessage message)
         {
             return (BookReview)message.Payload;
         }
