@@ -1,7 +1,7 @@
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloClient } from 'apollo-client';
-import { split } from 'apollo-link';
 import { HttpLink } from 'apollo-link-http';
+import { RetryLink } from 'apollo-link-retry';
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
 
@@ -16,10 +16,13 @@ const wsLink = new WebSocketLink({
   uri: `${SUBSCRIPTION_URL}`,
   options: {
     reconnect: true,
+    timeout: 30000,
   },
 });
 
-const link = split(
+const retryLink = new RetryLink({ attempts: { max: Infinity } });
+
+const link = retryLink.split(
   ({ query }) => {
     const definition = getMainDefinition(query);
     return (
@@ -34,16 +37,6 @@ const link = split(
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link,
-  defaultOptions: {
-    watchQuery: {
-      fetchPolicy: 'no-cache',
-      errorPolicy: 'ignore',
-    },
-    query: {
-      fetchPolicy: 'no-cache',
-      errorPolicy: 'all',
-    },
-  },
 });
 
 export default client;
