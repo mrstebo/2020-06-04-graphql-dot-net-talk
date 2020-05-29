@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Feed, Image } from 'semantic-ui-react';
 
 export interface IBookReviewListItem {
