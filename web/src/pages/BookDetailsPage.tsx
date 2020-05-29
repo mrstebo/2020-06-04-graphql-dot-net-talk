@@ -14,12 +14,14 @@ import { CREATE_BOOK_REVIEW } from '../graphql/mutations';
 import { GET_BOOK } from '../graphql/queries';
 import { ON_BOOK_REVIEW_ADDED } from '../graphql/subscriptions';
 
+const MAX_REVIEWS = 10;
+
 export const BookDetailsPage: React.FC = () => {
   const { bookId } = useParams();
   const { loading, error, data, subscribeToMore } = useQuery(GET_BOOK, {
     variables: {
       bookId,
-      orderBy: { createdAt: 'DESC' },
+      first: MAX_REVIEWS,
     },
   });
   const [createBookReview] = useMutation(CREATE_BOOK_REVIEW);
@@ -50,7 +52,10 @@ export const BookDetailsPage: React.FC = () => {
           ...prev,
           book: {
             ...prev.book,
-            reviews: _.uniqBy([newBookReview, ...prev.book.reviews], x => x.id),
+            reviews: _.chain([newBookReview, ...prev.book.reviews])
+              .uniqBy(x => x.id)
+              .take(MAX_REVIEWS)
+              .value(),
           },
         };
       },
