@@ -8,7 +8,7 @@ namespace MyApi.Types
         {
             descriptor.Field(t => t.OnBookReviewAdded(default!, default!))
                 .Type<NonNullType<BookReviewType>>()
-                .Argument("bookId", arg => arg.Type<NonNullType<IdType>>());
+                .Argument("bookId", arg => arg.Type<NonNullType<LongType>>());
         }
     }
 }

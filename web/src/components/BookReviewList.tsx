@@ -18,9 +18,7 @@ export const BookReviewList: React.FC<IBookReviewListProps> = ({
   data,
   subscribeToNewBookReviews,
 }) => {
-  useEffect(() => {
-    subscribeToNewBookReviews();
-  }, []);
+  subscribeToNewBookReviews();
 
   const renderItem = (item: IBookReviewListItem, index: number) => {
     const avatarHash = item.name.split(' ').join('');

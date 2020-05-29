@@ -9,7 +9,6 @@ import {
   BookReviewList,
   IBookReviewFormData,
 } from '../components';
-import { SubscribedBookReviewList } from '../containers';
 import { CREATE_BOOK_REVIEW } from '../graphql/mutations';
 import { GET_BOOK } from '../graphql/queries';
 import { ON_BOOK_REVIEW_ADDED } from '../graphql/subscriptions';
@@ -40,14 +39,18 @@ export const BookDetailsPage: React.FC = () => {
     subscribeToMore({
       document: ON_BOOK_REVIEW_ADDED,
       variables: {
-        bookId,
+        bookId: parseInt(bookId, 10),
       },
       updateQuery: (prev, { subscriptionData }) => {
         const newBookReview = subscriptionData.data.onBookReviewAdded;
 
-        console.log(prev);
-
-        return prev;
+        return {
+          ...prev,
+          book: {
+            ...prev.book,
+            reviews: [newBookReview, ...prev.book.reviews],
+          },
+        };
       },
     });
   };
