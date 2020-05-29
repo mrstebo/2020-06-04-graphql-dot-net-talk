@@ -30,7 +30,8 @@ namespace MyApi.Types
                     var book = ctx.Parent<Book>();
 
                     return repository.FindAll().Where(x => x.BookId == book.Id);
-                });
+                })
+                .UseSorting();
 
             descriptor.Include<BookResolvers>();
         }

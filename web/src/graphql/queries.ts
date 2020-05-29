@@ -26,7 +26,7 @@ export const GET_BOOKS = gql`
 `;
 
 export const GET_BOOK = gql`
-  query($bookId: ID!) {
+  query($bookId: ID!, $orderBy: BookReviewSort) {
     book(id: $bookId) {
       name
       imageUrl
@@ -34,7 +34,7 @@ export const GET_BOOK = gql`
       author {
         name
       }
-      reviews {
+      reviews(order_by: $orderBy) {
         id
         name
         title

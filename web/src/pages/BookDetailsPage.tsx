@@ -19,6 +19,7 @@ export const BookDetailsPage: React.FC = () => {
   const { loading, error, data, subscribeToMore } = useQuery(GET_BOOK, {
     variables: {
       bookId,
+      orderBy: { createdAt: 'DESC' },
     },
   });
   const [createBookReview] = useMutation(CREATE_BOOK_REVIEW);
