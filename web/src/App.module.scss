@@ -1,3 +1,15 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
 .header {
   margin-bottom: 2rem !important;
+}
+
+.footer {
+  width: 100%;
+  margin-top: 2rem;
 }
