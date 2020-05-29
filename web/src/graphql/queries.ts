@@ -1,4 +1,4 @@
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 
 export const GET_AUTHORS = gql`
   query {
@@ -26,13 +26,20 @@ export const GET_BOOKS = gql`
 `;
 
 export const GET_BOOK = gql`
-  query($bookId: ID!) {
+  query($bookId: ID!, $first: Int) {
     book(id: $bookId) {
       name
       imageUrl
       description
       author {
         name
+      }
+      reviews(first: $first) {
+        id
+        name
+        title
+        content
+        createdAt
       }
     }
   }

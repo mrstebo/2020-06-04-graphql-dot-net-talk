@@ -2,6 +2,7 @@ using HotChocolate;
 using HotChocolate.AspNetCore;
 using HotChocolate.AspNetCore.Playground;
 using HotChocolate.AspNetCore.Voyager;
+using HotChocolate.Subscriptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,7 +23,7 @@ namespace MyApi
             // services.AddSingleton<Query>();
 
             // enable InMemory messaging services for subscription support.
-            // services.AddInMemorySubscriptionProvider();
+            services.AddInMemorySubscriptionProvider();
 
             // this enables you to use DataLoader in your resolvers.
             services.AddDataLoaderRegistry();
@@ -32,20 +33,32 @@ namespace MyApi
                 // enable for authorization support
                 // .AddAuthorizeDirectiveType()
                 .AddQueryType<QueryType>()
+                .AddMutationType<MutationType>()
+                .AddSubscriptionType<SubscriptionType>()
                 .ModifyOptions(o => o.RemoveUnreachableTypes = true));
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", builder => builder
+                    .AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                );
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app
+                .UseCors("AllowAll")
                 .UseRouting()
                 .UseWebSockets()
-                .UseGraphQL()
+                .UseGraphQL("/graphql")
                 .UsePlayground(new PlaygroundOptions
                 {
                     Path = "/playground",
-                    QueryPath = "/api//"
+                    QueryPath = "/graphql"
                 })
                 .UseVoyager();
         }

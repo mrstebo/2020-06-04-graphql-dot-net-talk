@@ -10,7 +10,8 @@ namespace MyApi.Data
             return services
                 .AddDbContext<LibraryContext>(ServiceLifetime.Transient) // Create new instance per query
                 .AddTransient<IAuthorRepository, AuthorRepository>()
-                .AddTransient<IBookRepository, BookRepository>();
+                .AddTransient<IBookRepository, BookRepository>()
+                .AddTransient<IBookReviewRepository, BookReviewRepository>();
         }
     }
 }
