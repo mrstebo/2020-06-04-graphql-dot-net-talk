@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import React from 'react';
 import { Digital as ActivityIndicator } from 'react-activity';
@@ -48,7 +49,7 @@ export const BookDetailsPage: React.FC = () => {
           ...prev,
           book: {
             ...prev.book,
-            reviews: [newBookReview, ...prev.book.reviews],
+            reviews: _.uniqBy([newBookReview, ...prev.book.reviews], x => x.id),
           },
         };
       },

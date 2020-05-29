@@ -35,6 +35,7 @@ export const GET_BOOK = gql`
         name
       }
       reviews {
+        id
         name
         title
         content
