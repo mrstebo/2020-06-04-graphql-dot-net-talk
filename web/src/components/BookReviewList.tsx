@@ -36,7 +36,13 @@ export const BookReviewList: React.FC<IBookReviewListProps> = ({
             <a>{item.name}</a> <b>{item.title}</b>
             <Feed.Date>{moment(item.createdAt).fromNow()}</Feed.Date>
           </Feed.Summary>
-          <Feed.Extra text={true}>{item.content}</Feed.Extra>
+          <Feed.Extra text={true}>
+            {item.content.split('\n').map((line, i) => (
+              <p key={`book_review_content_${index}_${i}`}>
+                {line || '\u00a0'}
+              </p>
+            ))}
+          </Feed.Extra>
         </Feed.Content>
       </Feed.Event>
     );
