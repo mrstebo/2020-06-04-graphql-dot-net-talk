@@ -1,3 +1,4 @@
+export * from './AuthorInformation';
 export * from './AuthorList';
 export * from './BookInformation';
 export * from './BookList';
