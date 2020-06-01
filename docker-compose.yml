@@ -33,15 +33,15 @@ services:
     environment:
       DB_HOST: db
       DB_DATABASE: mydb
-      DB_USERNAME: testuser
-      DB_PASSWORD: mysupersecurepassword
+      DB_USERNAME: admin
+      DB_PASSWORD: password
 
   db:
     image: postgres:12.3
     environment:
       POSTGRES_DB: mydb
-      POSTGRES_USER: testuser
-      POSTGRES_PASSWORD: mysupersecurepassword
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
 
   adminer:
     image: adminer
