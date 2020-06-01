@@ -6,6 +6,7 @@ import styles from './App.module.scss';
 import { Footer, Header } from './components';
 import {
   AuthorCollectionPage,
+  AuthorDetailsPage,
   BookCollectionPage,
   BookDetailsPage,
 } from './pages';
@@ -22,6 +23,11 @@ const App: React.FC = () => {
                 exact={true}
                 path="/authors"
                 component={AuthorCollectionPage}
+              />
+              <Route
+                exact={true}
+                path="/authors/:authorId"
+                component={AuthorDetailsPage}
               />
               <Route
                 exact={true}
