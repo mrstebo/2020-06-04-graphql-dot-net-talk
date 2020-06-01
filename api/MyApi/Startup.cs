@@ -60,7 +60,11 @@ namespace MyApi
                     Path = "/playground",
                     QueryPath = "/graphql"
                 })
-                .UseVoyager();
+                .UseVoyager(new VoyagerOptions
+                {
+                    Path = "/voyager",
+                    QueryPath = "/graphql"
+                });
         }
     }
 }
