@@ -5,7 +5,7 @@ export interface IBookListItem {
   id: number;
   name: string;
   imageUrl: string;
-  author: {
+  author?: {
     name: string;
   };
 }
@@ -24,7 +24,7 @@ export const BookList: React.FC<IBookListProps> = ({ data, onBookClicked }) => {
         <Image src={item.imageUrl} />
         <Card.Content>
           <Card.Header>{item.name}</Card.Header>
-          <Card.Meta>{item.author.name}</Card.Meta>
+          {item.author && <Card.Meta>{item.author.name}</Card.Meta>}
         </Card.Content>
       </Card>
     );
