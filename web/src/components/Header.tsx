@@ -18,13 +18,13 @@ export const Header: React.FC<IHeaderProps> = ({ className }) => {
       <Menu.Item header={true}>Buzzword Library</Menu.Item>
       <Menu.Item
         onClick={handleBooksClicked}
-        active={location.pathname === '/books'}
+        active={location.pathname.startsWith('/books')}
       >
         Books
       </Menu.Item>
       <Menu.Item
         onClick={handleAuthorsClicked}
-        active={location.pathname === '/authors'}
+        active={location.pathname.startsWith('/authors')}
       >
         Authors
       </Menu.Item>
