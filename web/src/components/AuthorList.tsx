@@ -11,33 +11,41 @@ export interface IAuthorListItem {
 
 export interface IAuthorListProps {
   data: IAuthorListItem[];
+  onAuthorClicked(author: IAuthorListItem): void;
 }
 
-export const AuthorList: React.FC<IAuthorListProps> = ({ data }) => {
+export const AuthorList: React.FC<IAuthorListProps> = ({
+  data,
+  onAuthorClicked,
+}) => {
+  const renderItem = (item: IAuthorListItem, index: number) => {
+    const handleItemClicked = () => onAuthorClicked(item);
+
+    return (
+      <Table.Row key={index} className={styles.row} onClick={handleItemClicked}>
+        <Table.Cell collapsing={true}>
+          <Image
+            className={styles.authorImage}
+            src={item.imageUrl}
+            rounded={true}
+          />
+        </Table.Cell>
+        <Table.Cell>{item.name}</Table.Cell>
+        <Table.Cell collapsing={true} width="2" textAlign="center">
+          {item.bookCount}
+        </Table.Cell>
+      </Table.Row>
+    );
+  };
+
   return (
-    <Table>
+    <Table selectable={true} striped={true}>
       <Table.Header>
         <Table.HeaderCell />
         <Table.HeaderCell>Name</Table.HeaderCell>
         <Table.HeaderCell>Number of Books</Table.HeaderCell>
       </Table.Header>
-      <Table.Body>
-        {data.map((item, index) => (
-          <Table.Row key={index}>
-            <Table.Cell collapsing={true}>
-              <Image
-                className={styles.authorImage}
-                src={item.imageUrl}
-                rounded={true}
-              />
-            </Table.Cell>
-            <Table.Cell>{item.name}</Table.Cell>
-            <Table.Cell collapsing={true} width="2" textAlign="center">
-              {item.bookCount}
-            </Table.Cell>
-          </Table.Row>
-        ))}
-      </Table.Body>
+      <Table.Body>{data.map(renderItem)}</Table.Body>
     </Table>
   );
 };
