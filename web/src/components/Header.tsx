@@ -10,12 +10,15 @@ export const Header: React.FC<IHeaderProps> = ({ className }) => {
   const history = useHistory();
   const location = useLocation();
 
+  const handleHomeClicked = () => history.push('/');
   const handleBooksClicked = () => history.push('/books');
   const handleAuthorsClicked = () => history.push('/authors');
 
   return (
     <Menu className={className} inverted={true} attached={true} size="massive">
-      <Menu.Item header={true}>Buzzword Library</Menu.Item>
+      <Menu.Item header={true} onClick={handleHomeClicked}>
+        Buzzword Library
+      </Menu.Item>
       <Menu.Item
         onClick={handleBooksClicked}
         active={location.pathname.startsWith('/books')}

@@ -9,6 +9,7 @@ import {
   AuthorDetailsPage,
   BookCollectionPage,
   BookDetailsPage,
+  WelcomePage,
 } from './pages';
 
 const App: React.FC = () => {
@@ -19,6 +20,7 @@ const App: React.FC = () => {
           <div>
             <Header className={styles.header} />
             <Switch>
+              <Route exact={true} path="/" component={WelcomePage} />
               <Route
                 exact={true}
                 path="/authors"
@@ -39,7 +41,7 @@ const App: React.FC = () => {
                 path="/books/:bookId"
                 component={BookDetailsPage}
               />
-              <Redirect to="/books" />
+              <Redirect to="/" />
             </Switch>
           </div>
           <Footer className={styles.footer} />
