@@ -6,7 +6,7 @@ import styles from './WelcomePage.module.scss';
 export const WelcomePage: React.FC = () => {
   return (
     <div className={styles.container}>
-      <Header size="huge">
+      <Header size="huge" textAlign="center">
         Buzzword Library
         <Header.Subheader>Recommended Reading</Header.Subheader>
       </Header>
