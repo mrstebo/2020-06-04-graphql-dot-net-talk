@@ -2,6 +2,8 @@
 
 The example project that will be used for the [Behind The Buzzword GraphQL talk](https://www.meetup.com/Behind-The-Buzz-Word/events/270628477/)
 
+Get the slides [here](https://docs.google.com/presentation/d/1K6EzeM9UXq2Nxp6OT3Kx59TkHXw8KQi7XNBop0mgtXk/edit?usp=sharing)
+
 This application demonstrates the following concepts of GraphQL:
 
 - Queries
