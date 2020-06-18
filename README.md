@@ -33,7 +33,7 @@ Here are the links that you will be able to access:
 - [http://localhost:3000]() - This is the Web App
 - [http://localhost:5000/playground]() - This is the GraphQL Playground
 - [http://localhost:5000/voyager]() - This allows you to see a visual representation of your GraphQL Schema
-- [http://localhost:8080] - The Adminer app, which allows you to see what is in the database _(creds in docker-compose.yml)_
+- [http://localhost:8080]() - The Adminer app, which allows you to see what is in the database _(creds in docker-compose.yml)_
 
 ---
 
