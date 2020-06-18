@@ -2,7 +2,7 @@
 
 The example project that will be used for the [Behind The Buzzword GraphQL talk](https://www.meetup.com/Behind-The-Buzz-Word/events/270628477/)
 
-Get the slides [here](https://docs.google.com/presentation/d/e/2PACX-1vRXGBM3i3cEvcldUK7y3DDupmd2oXrX1RH_LKhNuFNM4u7-ta4-WMNRXo51pGnBapLfzueYkHh24y5Y/pub?start=false&loop=false&delayms=3000)
+Get the slides [here](https://docs.google.com/presentation/d/e/2PACX-1vSbiOrzGnN6JSQZHfgsDq73BLrGrqWHFc2A0jbqTxvNTit5MRkdxvkkvQlu92EWvPjWpmSxu-aACaVd/pub?start=false&loop=false&delayms=3000)
 
 This application demonstrates the following concepts of GraphQL:
 
